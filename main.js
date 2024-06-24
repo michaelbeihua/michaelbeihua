@@ -428,10 +428,12 @@ function initializeImageModal() {
 }
 
 let isPanelOpen = false;
+let wasPlaying;
 function openPanel(description) {
     isPanelOpen = true;
     const panel = document.getElementById('panel');
     const panelContent = document.getElementById('panel-content');
+    wasPlaying = isPlaying;
 
     fadeOutAudio(ambientAudio, 2000);
 
@@ -604,7 +606,7 @@ const closeButton = document.getElementById('closeButton');
         panel.style.display = 'none';
         buttonContainer.style.display = 'block';
         isPanelOpen = false;
-        if (isPlaying) {
+        if (wasPlaying) {
             fadeInAudio(ambientAudio, 5000);
         }
     };
@@ -626,6 +628,7 @@ function toggleInfo() {
     const infoOverlay = document.getElementById('infoOverlay');
     infoOverlay.classList.toggle('active');
     const invitationCard = document.querySelector('.invitation-card');
+    buttonContainer.style.display = 'none';
 
     infoOverlay.addEventListener('click', (event) => {
         if (!invitationCard.contains(event.target)) {
@@ -635,6 +638,7 @@ function toggleInfo() {
 
     function closeInfo() {
         infoOverlay.classList.remove('active');
+        buttonContainer.style.display = 'block';
     }
 }
 // panel open closing sliding, no sound enter option
