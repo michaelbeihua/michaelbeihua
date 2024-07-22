@@ -521,7 +521,7 @@
 
 			.scroll-indicator {
 			position: fixed;
-			bottom: 10%; /* Adjust as needed */
+			bottom: 10%; 
 			left: 50%;
 			transform: translateX(-50%);
 			z-index: 9999;
@@ -567,6 +567,81 @@
 			top: 55px;
 			}
 
+			.click-indicator {
+            position: fixed;
+            bottom: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            text-align: center;
+            color: #fff;
+            font-size: 12px;
+			opacity: 0;
+			visibility: hidden;
+    		transition: opacity 3s ease-in 1s, visibility 0s ease-in 1s;
+        }
+
+			.click-indicator.show {
+			opacity: 1;
+			visibility: visible;
+			}
+
+        .click-mouse {
+            position: relative;
+            width: 30px;
+            height: 50px;
+            background-color: transparent; /* White mouse */
+			border: 2px solid #fff;
+            border-radius: 15px;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .click-mouse::before {
+            content: "";
+            position: absolute;
+            top: -2px; /* Adjusted to remove the gap */
+            left: -2px; /* Adjusted to remove the gap */
+            width: 53%;
+            height: 52%;
+            background: #fff;
+            border-top-left-radius: 15px;
+			border-bottom-right-radius: 5px;
+            transform-origin: top left; /* Ensures consistent scaling from the top-left corner */
+            z-index: 1;
+            animation: click-effect 1.5s ease-in-out infinite;
+        }
+
+		.click-text {
+			margin-top: 15px;
+		}
+
+        @keyframes click-effect {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            25% {
+                transform: scale(1.05);
+                opacity: 0.6;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.7;
+            }
+            75% {
+                transform: scale(1.05);
+                opacity: 0.6;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+        }
+
 			@keyframes scroll {
     0% {
         opacity: 0;
@@ -599,13 +674,18 @@
 }
 
 			#scroll-indicator {
-				display: block; /* Ensure it's initially visible */
+				display: block; 
 				opacity: 1;
-				transition: opacity 3s ease; /* Adjust duration and timing function as needed */
+				transition: opacity 3s ease;
 			}
 
 			#scroll-indicator.hidden {
 				opacity: 0;
+			}
+
+			#click-indicator.hidden {
+				opacity: 0;
+				transition: opacity 3s ease;
 			}
 
 			.sound-info-button-container {
@@ -794,11 +874,15 @@
 		</div>
 		<div class="scroll-indicator" id="scroll-indicator">
 			<div class="scroll-downs">
-				<div class="mousey">
-					<div class="scroller"></div>
-				</div>
+			<div class="mousey">
+				<div class="scroller"></div>
+			</div>
 			</div>
 			<div class="scroll-text">Scroll to walk the runway</div>
+		</div>
+		<div class="click-indicator" id="click-indicator">
+			<div class="click-mouse"></div>
+			<div class="click-text">Click the white circles to view</div>
 		</div>
 		<div class="sound-info-button-container">
 			<div class="sound-container" id="soundContainer">

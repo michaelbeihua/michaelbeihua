@@ -171,6 +171,7 @@ function createButton(object, description) {
 
     button.addEventListener('mouseenter', () => {
         showTooltip(button);
+        document.getElementById('click-indicator').classList.add('hidden');
     });
 
     button.addEventListener('mouseleave', () => {
@@ -280,6 +281,7 @@ function onScroll(event) {
     }
     if (document.getElementById('scroll-indicator').style.display = 'block') {
         document.getElementById('scroll-indicator').classList.add('hidden');
+        document.getElementById('click-indicator').classList.add('show');
     }
     if (isPanelOpen) return;
     event.preventDefault();
